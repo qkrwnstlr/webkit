@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<ul type="circle", class="color">
+		<li>red</li>
+		<li>green</li>
+		<li>blue</li>
+	</ul>
+	
+	<ol type="a", class="menu">
+		<li>menu01</li>
+		<li>menu02</li>
+		<li>menu03</li>
+	</ol>
+
+	<script>
+		// 문서의 class명이 color인 모든 요소를 select함
+		colorList = document.getElementsByClassName('color');
+		for (var i = 0; i < colorList.length; i++) {
+			// colorList[i]의 tag명이 li인 모든 요소의  select함
+			liList = colorList[i].getElementsByTagName('li');
+			for(var li of liList) {
+				li.addEventListener('click', function() {
+					// this : li 객체 자기 자신
+					document.body.style.backgroundColor = this.innerHTML;
+				});
+			}
+		};
+	</script>
+</body>
+</html>
