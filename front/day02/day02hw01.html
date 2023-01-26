@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#calc {
+			width: 160px;
+		}
+
+		#calc button {
+			width: 40px;
+			height: 30px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>초등학교 저학년용 계산기</h1>
+	<p>결과가 음수가 나오지 않도록</p>
+	<form action="">
+		<input type="text" id="num1" value="10">
+		<select id="oper">
+			<option value="+" selected>+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<input type="text" id="num2" value="5">
+		<input type="button" id="resultBtn" value="확인">
+	</form>
+	<div id="result">The result is: </div>
+	<hr />
+	<script src="day02hw01.js"></script>
+</body>
+
+</html>
