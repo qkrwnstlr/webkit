@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		table input {
+			text-align: end;
+			width: "1200px";
+			height: "300px";
+			font-size: large;
+			border: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>초등학교 저학년용 계산기</h1>
+	<p>결과가 음수가 나오지 않도록</p>
+	<table border="10" width="300" , height="300" , align="center" , cellpadding="5" , cellspacing="5" , bgcolor="grey">
+		<tr align="center", valign="middle", bgcolor="white">
+			<td colspan="4"><input type="number", id="display", value="0"></td>
+		</tr>
+		<tr align="center", valign="middle", bgcolor="white">
+			<td colspan="4" id="ac">AC</td>
+		</tr>
+		<tr align="center", valign="middle", bgcolor="white">
+			<td class="num">1</td>
+			<td class="num">2</td>
+			<td class="num">3</td>
+			<td id="/">/</td>
+		</tr>
+		<tr align="center", valign="middle", bgcolor="white">
+			<td class="num">4</td>
+			<td class="num">5</td>
+			<td class="num">6</td>
+			<td id="*">*</td>
+		</tr>
+		<tr align="center", valign="middle", bgcolor="white">
+			<td class="num">7</td>
+			<td class="num">8</td>
+			<td class="num">9</td>
+			<td id="-">-</td>
+		</tr>
+		<tr align="center", valign="middle", bgcolor="white">
+			<td class="num">0</td>
+			<td id="<"><</td>
+			<td id="=">=</td>
+			<td id="+">+</td>
+		</tr>
+	</table>
+	<script src="day02hw02.js"></script>
+</body>
+</html>
