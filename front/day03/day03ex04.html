@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<div class="container">
+		<table id="tb1" class="table"></table>
+	</div>
+	<script>
+		// object : key-value 형태로 값 저장, 생성자 : {}
+		var arr = [
+			{'no' : 1, 'name' : '홍길동', 'dept' : '영업부'},
+			{'no' : 2, 'name' : '김길동', 'dept' : '개발부'},
+		];
+		arr.forEach(element => {
+			console.log(element.no, element.name, element.dept);
+		});
+		
+		var tb1 = document.getElementById('tb1');
+		var str = '';
+		arr.forEach(element => str += `<tr><td>${element.no}</td><td>${element.name}</td><td>${element.dept}</td></tr>`);
+		console.log(str);
+		tb1.innerHTML = str;
+	</script>
+</body>
+</html>
