@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<div class="container">
+		<p>검색 <input type="text" id="searchForm"><input type="button" id="searchBtn" value="검색"></p>
+		<table id="tb1" class="table">
+			<thead>
+				<th><input type="checkbox" id="allCheck"></th>
+				<th>번호</th>
+				<th>사진</th>
+				<th>사원명</th>
+				<th>부서</th>
+				<th>직급</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</thead>
+			<tbody id="rows"></tbody>
+		</table>
+	<div class="container">
+
+	<!-- text/template 타입의 스크립트는 브라우저가 그냥 무시함 -->
+	<script type="text/template" id="rowTemplate">
+		<tr align="center">
+			<td><input type="checkbox" class="check"/></td>
+			<td>{no}</td>
+			<td><img src={img} height="100"/></td>
+			<td>{name}</td>
+			<td>{dept}</td>
+      <td>{pos}</td>
+      <td><input type="button" value="수정"/></td>
+      <td><input type="button" value="삭제"/></td>
+    </tr>
+	</script>
+
+	<script>
+		var employees = [
+			{'no' : 1, 'img' : 'images/no-image-found.png', 'name' : '홍길동', 'dept' : '영업부', 'pos' : '부장'},
+			{'no' : 2, 'img' : 'images/no-image-found.png', 'name' : '김길동', 'dept' : '영업부', 'pos' : '부장'},
+			{'no' : 3, 'img' : 'images/no-image-found.png', 'name' : '이길동', 'dept' : '영업부', 'pos' : '부장'},
+			{'no' : 4, 'img' : 'images/no-image-found.png', 'name' : '박길동', 'dept' : '영업부', 'pos' : '부장'},
+		];
+
+		initRows();
+
+		var searchForm = document.querySelector('#searchForm');
+		var searchBtn = document.querySelector('#searchBtn');
+		// 포커스가 맞춰진 input에서 키보드가 눌렸다 떨어질때 동작
+		searchForm.onkeyup = onSearch;
+		searchBtn.onclick = onSearch;
+
+		function onSearch() {
+			if(searchForm.value == '') {
+				initRows();
+			} else {
+				clearRows();
+				for(var employee of employees) {
+					if (employee.name.indexOf(searchForm.value) != -1) {
+						makeRow(employee);
+					}
+				}
+			}
+		}
+
+		function initRows() {
+			clearRows();
+			employees.forEach((employee) => {
+				makeRow(employee);
+			});
+		}
+
+		function makeRow(employee) {
+			var rows = document.getElementById('rows');
+			var rowTemplate = document.querySelector('#rowTemplate').innerHTML;
+			// 특정한 패턴을 정하고 이를 replace로 교체하여 사용
+			rowTemplate = rowTemplate.replace("{no}", employee.no)
+				.replace("{img}", employee.img)
+				.replace("{name}", employee.name)
+				.replace("{dept}", employee.dept)
+				.replace("{pos}", employee.pos);
+			rows.innerHTML += rowTemplate;
+		}
+
+		function clearRows() {
+			var rows = document.getElementById('rows');
+			rows.innerHTML = '';
+		}
+	</script>
+
+	<script>
+		
+	</script>
+</body>
+</html>
