@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// parseInt : 문자를 정수로 변환
+		// 숫자가 아닌 문자가 있으면 그까지만 바꿈, 시작이 숫자가 아니면 Nan 반환
+		console.log(parseInt('15')); // 15
+		console.log(parseInt('10h5')); // 10
+		console.log(parseInt('h15')); // NaN
+
+		// typeof : 타입 반환
+		console.log(typeof parseInt('15')); // number
+		console.log(typeof parseInt('h15')); // number : NaN도 number 타입임
+		console.log(typeof '15'); // string
+
+		// isNaN : NaN인지 반환
+		console.log(isNaN(parseInt('15'))); // false
+		console.log(isNaN(parseInt('h15'))); // true
+
+		// alert : 알림창 띄우기
+		alert('alert'); // 반환값이 없는 일방적인 알림창
+
+		// NaN : Not a Number, 숫자가 아님
+		// null : 유효하지 않은 값, 초기화는 했으나 해당 값이 유효하지 않은 상태
+		// undefined : 변수의 초기값, 선언은 했으나 초기화하지 않은 상태
+		var a;
+		console.log(typeof a); // undefined
+		console.log(typeof NaN); // number
+		console.log(typeof null); // object : 일종의 typeof버그, 매칭되는 값이 없어서 object를 반환함
+		console.log(typeof undefined); // undefined : 자료형이 없는 상태
+		console.log(NaN == null); // false
+		console.log(NaN == undefined); // false
+		console.log(null == undefined); // true, null과 undefined은 같은 값으로 취급된다.
+		console.log(null === undefined); // false, null과 undefined은 같은 타입은 아니다.
+		console.log(Boolean(NaN) && Boolean(null) && Boolean(undefined)); // false, 각 타입은 모두 Boolean으로 매칭하면 false다
+
+		// string.indexOf : 문자열에서 몇번째에 위치해 있는지 반환
+		console.log(("+-*/+".indexOf("+"))); // 0 : 여러개 있으면 가장 빠른 index를 반환
+		console.log(("+-*/+".indexOf("?"))); // -1 : 없으면 -1 반환
+	</script>
+</body>
+</html>
