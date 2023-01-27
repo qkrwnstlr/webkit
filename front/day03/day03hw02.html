@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		li span {
+			text-align: center;
+			display: inline-block;
+			width: 200px;
+			height: 40px;
+		}
+</style>
+
+	<title>Document</title>
+</head>
+<body>
+    <!-- 주말 과제 : HTML, CSS, JS를 이용해 TODO 만들기 -->
+	<div class="container">
+  	<h1>TODO LIST</h1>
+    <p>
+      할일<input type="text" id="addData">
+      <button id="addBtn">add</button>
+			<button id='deleteBtn'>delete</button>
+    </p>
+    <ul id="listArea"></ul>
+	</div>
+
+	<script type="text/template" id="listItemTemplate">
+		<li>
+			<input type="checkbox" class='checkBox'>
+			<span>{contents}</span>
+		</li>
+	</script>
+
+	<script src="day03hw02.js"></script>
+</body>
+</html>
