@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/* selector { property: value; } */
+		/*
+			 <selector>
+			 - 모든 요소 : *
+			 - 클래스 명 : .class
+			 - 아이디 명 : #id
+			 - 요소 명 : element
+			 - 요소.클래스 명 : elemnt.class
+
+			 - or : elemnt, element, element ...
+			 - 요소[특성], 요소[특성=값], 요소[특성=값][특성=값], 요소:nth-child(n)
+		*/
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: rgba(255, 150, 150, 0.5);
+			border: 0px solid rgba(100, 100, 100, 1);
+			border-radius: 15px;
+			transform: translate(0px, 0px);
+			box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.3);
+		}
+
+		.box:hover {
+			transform: rotate(90deg) translate(-10px, 0px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>
