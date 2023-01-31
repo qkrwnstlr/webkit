@@ -1,0 +1,51 @@
+#lists {
+	padding: 0px;
+	margin: 0px;
+	width: 2000px;
+	/*움직이기 위해서는 position을 설정해줘야함*/
+	position: relative;
+	/*초기값이 없으면 transition은 동작하지 않는다.*/
+	left: 0px;
+	transition: left 0.5s;
+}
+#lists > li {
+	float: left;
+	list-style: none;
+	/*li 세로 간격*/
+	line-height: 0%;
+}
+
+#slider {
+	display: flex;
+	width: 540px;
+	overflow: hidden;
+}
+#slider > button, #slider > #box {
+	margin: auto;
+	float: left;
+}
+#slider > button {
+	height: 40px;
+	width: 40px;
+	margin: auto 10px;
+	border: 0px;
+	background-color: white;
+}
+#slider > #box {
+	overflow: hidden;
+	flex: 1;
+}
+
+#box > div.message {
+	position: absolute;
+	display: none;
+	width: 420px;
+	height: 280px;
+	/*text 굵게*/
+	font-weight: bold;
+	/*text 색상*/
+	color: white;
+	/*text 중앙 정렬*/
+	text-align: center;
+	line-height: 280px;
+}
