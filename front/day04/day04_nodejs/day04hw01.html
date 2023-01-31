@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#form1 input[type=text], #form1 textarea{
+			border: none;
+			border-bottom: 1px solid black;
+			background-color: lightgray;
+			width: 400px;
+		}
+	</style>
+	<script>
+		function validateForm(event) {
+			event.preventDefault();
+			form = event.target;
+
+			if(form.subject.value == "") {
+				alert("제목을 입력 하세요.");
+				form.subject.focus();
+				return false;
+			}
+			if(form.writer.value == "") {
+				alert("글쓴이 이름을 입력 하세요.");
+				form.writer.focus();
+				return false;
+			}
+			if(form.writer.value.length < 2) {
+				alert("글쓴이 이름은 2글자 이상 입력 하세요.");
+				form.writer.focus();
+				return false;
+			}
+			console.log(form.subject.value);
+			console.log(form.writer.value);
+			console.log(form.content.value);
+			form.action = `http://localhost:3000?subject=${form.subject.value}&writer=${form.writer.value}&content=${form.content.value}}`;
+			form.submit();
+		}
+
+		console.dir(window);
+
+		window.onload = function() {
+			var form1 = document.getElementById("form1");
+			console.log(form1);
+
+			form1.onsubmit = validateForm;
+		}
+	</script>
+</head>
+<body>
+	<h1>글쓰기</h1>
+	<form action="" id="form1" onsubmit="javascript:validateForm(this)">
+		<table>
+			<tr>
+				<th>제목</th>
+				<td><input type="text" name="subject"></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td><input type="text" name="writer"></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="content" cols="30" rows="10"></textarea></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td><input type="submit" value="저장"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
