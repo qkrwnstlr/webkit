@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#lists {
+			border: 1px solid black;
+			box-sizing: border-box;
+			padding: 0px;
+			margin: 0px;
+			display: flex;
+			width: 1000px;
+			/*움직이기 위해서는 position을 설정해줘야함*/
+			position: relative;
+			/*초기값이 없으면 transition은 동작하지 않는다.*/
+			left: 0px;
+			transition: left 0.5s;
+		}
+		#lists > li {
+      border: 1px solid black;
+			display: inline-block;
+			list-style: none;
+			text-align: center;
+			flex: 1;
+    }		
+
+		#slider {
+			display: flex;
+			width: 500px;
+			overflow: hidden;
+			border: 1px solid black;
+		}
+		#slider > button, #slider > #box {
+			float: left;
+		}
+		#slider > button {
+			width: 40px;
+		}
+
+		#box {
+			border: 1px solid black;
+			overflow: hidden;
+			flex: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="slider">
+		<button id="leftBtn">left</button>
+		<div id="box">
+			<ul id="lists"></ul>
+		</div>
+		<button id="rightBtn">right</button>
+	</div>
+	
+	<script>
+		var itemNames = [];
+		var slider = document.getElementById('slider');
+		var lists = document.getElementById('lists');
+		var leftBtn = document.getElementById('leftBtn');
+		var rightBtn = document.getElementById('rightBtn');
+
+		for(var i = 1; i <= 12; i++) {
+			itemNames.push(`item${i}`);
+		}
+
+		itemNames.forEach((elemnt) => {
+			var newLi = document.createElement('li');
+			newLi.innerHTML = elemnt;
+			newLi.className = 'itemLi';
+			lists.appendChild(newLi);
+		});
+
+		var x = 0;
+		
+		rightBtn.onclick = () => {
+			x -= 83.3;
+			if(x < -582) x = -582;
+			lists.style.left = `${x}px`;
+		};
+
+		leftBtn.onclick = () => {
+			x += 83.3;
+			if(x > 0) x = 0;
+			lists.style.left = `${x}px`;
+		};
+	</script>
+</body>
+</html>
