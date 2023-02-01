@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/*animation 선언*/
+		@keyframes box-animation {
+			0% {
+				background-color: red;
+				top: 0px;
+				left: 0px;
+			}
+			25% {
+				background-color: yellow;
+			}
+			50% {
+				background-color: green;
+				width: 300px;
+				height: 300px;
+				top: 200px;
+				left: 200px;
+				rotate: 360deg;
+			}
+			75% {
+				background-color: blue;
+			}
+			100% {
+				background-color: red;
+				top: 0px;
+				left: 0px;
+			}
+		}
+
+		div.box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			animation-name: box-animation;
+			/*animation 변환에 걸리는 시간*/
+			animation-duration: 3s;
+			/*위치를 이동시키려면 postion을 relative로 설정해야함*/
+			position: relative;
+			/*animation 반복 횟수*/
+			animation-iteration-count: infinite;
+			/*animation 속도 곡선*/
+			animation-timing-function: linear;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>
