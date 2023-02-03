@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsDay02Homework.html</title>
+	<style>
+		div.gameBox {
+			border: 1px solid orange;
+			width: 308px;
+			height: 108px;
+			overflow: hidden;
+		}
+
+		div.gameBox ul {
+			margin: 0;
+			padding: 0px;
+			float: left;
+		}
+
+		div.gameBox li {
+			width: 100px;
+			height: 100px;
+			border: 1px solid black;
+			list-style: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>햄버거 하우스 게임</h1>
+	<div class="gameBox"></div>
+	<button id="playBtn">Paly</button>
+
+	<script>
+		function MakeUl(gameBox) {
+			this.y = 0;
+			this.isStop = true;
+			this.init = function () {
+				this.ulTag = document.createElement("ul");
+				for (var i = 1; i <= 10; i++) {
+					var li = document.createElement("li");
+					li.innerText = i;
+					this.ulTag.appendChild(li);
+				}
+				gameBox.appendChild(this.ulTag);
+			}
+
+			this.play = function () {
+				this.isStop = false;
+				this.ulTag.style.position = "relative";
+				var stop = Math.abs(Math.floor(Math.random() * 5));
+				var cnt = 0;
+				var refInterval = setInterval(() => {
+					this.y -= 10;
+					if (this.y <= -1000) {
+						this.y = Math.abs(Math.floor(Math.random() * 10)) * -101.6;
+						if (cnt >= stop) {
+							clearTimeout(refInterval);
+							this.isStop = true;
+						}
+						cnt++;
+					}
+					this.ulTag.style.top = this.y + "px";
+				}, 10);
+			}
+		}
+
+		var gameBox = document.querySelector(".gameBox");
+		var box1 = new MakeUl(gameBox);
+		var box2 = new MakeUl(gameBox);
+		var box3 = new MakeUl(gameBox);
+
+		box1.init();
+		box2.init();
+		box3.init();
+
+		var playBtn = document.querySelector("#playBtn");
+		playBtn.addEventListener("click", function () {
+			box1.play();
+			box2.play();
+			box3.play();
+			var refInterval = setInterval(() => {
+				if (box1.isStop && box2.isStop && box3.isStop) {
+					setTimeout(() => {
+						check();
+					}, 100);
+					clearTimeout(refInterval);
+				}
+			}, 10);
+		});
+
+		function check() {
+			if (box1.y == box2.y && box1.y == box3.y) {
+				alert("you win!");
+			} else {
+				alert("you lose!");
+			}
+		}
+
+	</script>
+</body>
+
+</html>
