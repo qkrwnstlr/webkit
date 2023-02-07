@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		//		const myDiv = document.createElement("MyDiv");
+		class MyDiv {
+			constructor() {
+				this.innerHTML = "This is a test";
+			}
+		}
+		const myDiv = new MyDiv();
+		function first() {
+			myDiv.innerHTML = "first";
+			// 안정적으로 객체를 log찍는 방법
+			console.log(JSON.parse(JSON.stringify(myDiv)));
+			alert();
+		}
+		function second() {
+			myDiv.innerHTML = "second";
+			console.log(JSON.parse(JSON.stringify(myDiv)));
+		}
+		function third() {
+			myDiv.innerHTML = "third";
+			console.log(JSON.parse(JSON.stringify(myDiv)));
+		}
+		first(); second(); third();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/* 글자 드래그 막기 */
+		body {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none
+		}
+
+		div#box {
+			position: absolute;
+			border: 1px solid red;
+			background-color: yellow;
+			width: 100px;
+			height: 100px;
+		}
+
+		div#goal {
+			position: absolute;
+			border: 1px solid blue;
+			background-color: green;
+			width: 200px;
+			height: 200px;
+			left: 400px;
+			top: 400px;
+			z-index: -1;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>길동이의 코딩 교실</h1>
+	<div id="box">Box</div>
+	<div id="goal">Goal</div>
+	<button id="reset">Reset</button>
+	<script>
+		var box = document.getElementById("box");
+		var goal = document.getElementById("goal");
+		var resetBtn = document.getElementById("reset");
+
+		box.addEventListener('mousedown', (event) => {
+			var target = event.target;
+			var targetX = getComputedStyle(target).getPropertyValue("left");
+			var targetY = getComputedStyle(target).getPropertyValue("top");
+			var targetW = parseInt(getComputedStyle(target).getPropertyValue("width"));
+			var targetH = parseInt(getComputedStyle(target).getPropertyValue("width"));
+
+			var x = event.clientX;
+			var y = event.clientY;
+
+			var gapX = parseInt(targetX) - x;
+			var gapY = parseInt(targetY) - y;
+
+			// removeEvent할 event 함수는 따로 객체화 해야 삭제가 가능하다.
+			let onMouseMove = (event) => {
+				target.style.left = event.clientX + gapX + "px";
+				target.style.top = event.clientY + gapY + "px";
+			}
+
+			box.addEventListener("mousemove", onMouseMove);
+			box.addEventListener("mouseup", () => {
+				var goalX = parseInt(getComputedStyle(goal).getPropertyValue("left"));
+				var goalY = parseInt(getComputedStyle(goal).getPropertyValue("top"));
+				var goalW = parseInt(getComputedStyle(goal).getPropertyValue("width"));
+				var goalH = parseInt(getComputedStyle(goal).getPropertyValue("height"));
+
+				var currentTargetX = parseInt(target.style.left);
+				var currentTargetY = parseInt(target.style.top);
+
+				if (currentTargetX + targetW < goalX + goalW && currentTargetX > goalX
+					&& currentTargetY + targetH < goalY + goalH && currentTargetY > goalY) {
+					target.style.left = goalX + goalW / 2 - targetW / 2 + "px";
+					target.style.top = goalY + goalH / 2 - targetH / 2 + "px";
+
+					resetBtn.addEventListener("click", (evnet) => {
+						target.style.left = targetX;
+						target.style.top = targetY;
+					});
+				} else {
+					target.style.left = targetX;
+					target.style.top = targetY;
+				}
+				box.removeEventListener("mousemove", onMouseMove);
+			});
+		});
+	</script>
+</body>
+
+</html>

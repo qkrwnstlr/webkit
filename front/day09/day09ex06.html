@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		div#puzzle {
+			width: 400px;
+		}
+
+		div.cell {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			box-sizing: border-box;
+			float: left;
+			line-height: 100px;
+			text-align: center;
+			font-size: 36px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="puzzle"></div>
+
+	<script>
+		class Cell {
+			constructor(parentElement, content, callback) {
+				this.puzzle = parentElement;
+				this.newDiv = document.createElement("div");
+				this.content = content;
+				this.newDiv.innerHTML = this.content;
+				this.newDiv.className = "cell";
+				this.onClick = (event) => {
+					this.callback = callback;
+					this.callback();
+				}
+				this.newDiv.addEventListener('click', this.onClick);
+				puzzle.appendChild(this.newDiv);
+				return this;
+			}
+			getInner() {
+				return this.content;
+			}
+			changeInner(value) {
+				let temp = this.newDiv.innerHTML;
+				this.content = value;
+				this.newDiv.innerHTML = value;
+				return temp;
+			}
+			blindInner() {
+				this.newDiv.innerHTML = "";
+			}
+			showInner() {
+				this.newDiv.innerHTML = this.content;
+			}
+		}
+
+		class Puzzle {
+			constructor(parentElement) {
+				this.puzzle = parentElement;
+				this.puzzle.count = [];
+				this.cells = [];
+				for (var i = 0; i < 16; i++) {
+					this.cells.push(new Cell(this.puzzle, String.fromCharCode(65 + i % 8), function () {
+						console.log(this);
+					}));
+				}
+			}
+			suffle() {
+				for (var i = 0; i < 100; i++) {
+					var n = parseInt(Math.random() * this.cells.length);
+					var m = parseInt(Math.random() * this.cells.length);
+					this.cells[m].changeInner(this.cells[n].changeInner(this.cells[m].getInner()));
+				}
+				return this;
+			}
+			start() {
+				this.cells.forEach(element => {
+					element.blindInner();
+					element.newDiv.addEventListener("click", function () {
+						console.log(element.puzzle.count);
+						if (element.puzzle.count.length < 2) {
+							element.puzzle.count.push(element);
+							element.showInner();
+							let timer = setTimeout(() => {
+								element.blindInner();
+								element.puzzle.count--;
+							}, 2000);
+							if(element.puzzle.count.length == 2) {
+								if(element.count[0].innerHTML == element.count[1].innerHTML) {
+									clearTimeout(timer);
+									elemnt.newDiv.removeEventListener("click", elemnt.onClick);
+								}
+							}
+						}
+					});
+				});
+				return this;
+			}
+		}
+
+		new Puzzle(document.getElementById("puzzle")).suffle().start();
+	</script>
+</body>
+
+</html>

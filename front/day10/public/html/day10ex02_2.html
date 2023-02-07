@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jsDAy05Ex02_2</title>
+</head>
+
+<body>
+	<h1>jsDAy05Ex02_2</h1>
+	<div id="demo">
+		Ajax기술로 saram_data.json파일의 내용을 로드한다.
+	</div>
+	<p><button id="loadBtn">Laod Button</button></p>
+
+	<script>
+		var demo = document.getElementById("demo");
+		var loadBtn = document.getElementById("loadBtn");
+
+		loadBtn.addEventListener("click", (event) => {
+			alert("load button 클릭!");
+			// xhttp를 통핸 Ajax 처리
+			const xhttp = new XMLHttpRequest();
+			// 요청 결과 전송 후 처리하는 이벤트 핸들러
+			xhttp.onload = function (event) {
+				let resTxt = xhttp.responseText;
+				console.log(resTxt);
+				let jsonData = JSON.parse(resTxt);
+				console.log(jsonData);
+				let saramList = jsonData["saramList"];
+				console.log(saramList);
+			};
+			// 요청 페이지 설정
+			xhttp.open("GET", "/js/saram_data.json", true); // url : public 입장에서 설정, true : asynchronous 설정
+			// 실행 명령
+			xhttp.send();
+		});
+	</script>
+</body>
+
+</html>
