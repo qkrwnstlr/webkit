@@ -15,6 +15,8 @@ app.get("/", (req, res)=>{
     res.write("<li><a href='/html/day10ex01_2.html'>ex01_2</a></li>");
     res.write("<li><a href='/html/day10ex02_1.html'>ex02_1</a></li>");
     res.write("<li><a href='/html/day10ex02_2.html'>ex02_2</a></li>");
+    res.write("<li><a href='/html/day10ex02_3.html'>ex02_3</a></li>");
+    res.write("<li><a href='/html/day10ex02_4.html'>ex02_4</a></li>");
     res.write("<li><a href='/home'>home</a></li></ul>");
     res.end();
 });
