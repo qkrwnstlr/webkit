@@ -8,42 +8,68 @@ app.use(express.static('public'));
 app.set("view engine", "ejs");
 app.set("views", "./template");
 
-app.get("/", (req, res)=>{
-    res.writeHead(200, {"Content-Type":"text/html; charset=UTF-8"});
-    res.write("<h1>환영합니다!</h1>");
-    res.write("<ul><li><a href='/html/day10ex01_1.html'>ex01_1</a></li>");
-    res.write("<li><a href='/html/day10ex01_2.html'>ex01_2</a></li>");
-    res.write("<li><a href='/html/day10ex02_1.html'>ex02_1</a></li>");
-    res.write("<li><a href='/html/day10ex02_2.html'>ex02_2</a></li>");
-    res.write("<li><a href='/html/day10ex02_3.html'>ex02_3</a></li>");
-    res.write("<li><a href='/html/day10ex02_4.html'>ex02_4</a></li>");
-    res.write("<li><a href='/home'>home</a></li></ul>");
-    res.end();
+// body-parser 설치 : npm install body-parser --save
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+	res.writeHead(200, { "Content-Type": "text/html; charset=UTF-8" });
+	res.write("<h1>환영합니다!</h1>");
+	res.write("<ul><li><a href='/html/day10ex01_1.html'>ex01_1</a></li>");
+	res.write("<li><a href='/html/day10ex01_2.html'>ex01_2</a></li>");
+	res.write("<li><a href='/html/day10ex02_1.html'>ex02_1</a></li>");
+	res.write("<li><a href='/html/day10ex02_2.html'>ex02_2</a></li>");
+	res.write("<li><a href='/html/day10ex02_3.html'>ex02_3</a></li>");
+	res.write("<li><a href='/html/day10ex02_4.html'>ex02_4</a></li>");
+	res.write("<li><a href='/html/day10ex02_5.html'>ex02_5</a></li>");
+	res.write("<li><a href='/home'>home</a></li></ul>");
+	res.end();
 });
 
-app.get("/home", (req, res)=>{
-    // home.ejs 템플릿이 보여 지도록 한다.
-    // req.app.render(ejs파일명, 데이터객체, 콜백함수);
-    // 콜백함수의 첫번째는 err객체
-    var testArr = [
-        {no:1, name:"홍길동", age:12},
-        {no:2, name:"김길동", age:15},
-        {no:3, name:"박길동", age:13},
-        {no:4, name:"최길동", age:14}
-    ];
-    req.app.render("home", {testArr}, (err, html) => {
-        if(err != null) {
-            console.log("오류 발생!");
-            res.end();
-        } else {
-            res.end(html);        
-        }
-    });
+const saramList = [
+	{ "no": 1, "name": "kim", "email": "kim@saram.com", "phone": "010-1111-1111" },
+	{ "no": 2, "name": "lee", "email": "lee@saram.com", "phone": "010-1111-2222" },
+	{ "no": 3, "name": "park", "email": "park@saram.com", "phone": "010-1111-3333" },
+	{ "no": 4, "name": "kang", "email": "kang@saram.com", "phone": "010-1111-4444" },
+	{ "no": 5, "name": "choi", "email": "choi@saram.com", "phone": "010-1111-5555" }
+]
+
+app.get("/home", (req, res) => {
+	// home.ejs 템플릿이 보여 지도록 한다.
+	// req.app.render(ejs파일명, 데이터객체, 콜백함수);
+	// 콜백함수의 첫번째는 err객체
+	var testArr = [
+		{ no: 1, name: "홍길동", age: 12 },
+		{ no: 2, name: "김길동", age: 15 },
+		{ no: 3, name: "박길동", age: 13 },
+		{ no: 4, name: "최길동", age: 14 }
+	];
+	req.app.render("home", { testArr }, (err, html) => {
+		if (err != null) {
+			console.log("오류 발생!");
+			res.end();
+		} else {
+			res.end(html);
+		}
+	});
+});
+
+app.get("/saram/list", (req, res) => {
+	res.send({saramList});
+});
+
+app.post("/saram/add", (req, res) => {
+	var newSaram = req.body;
+	newSaram.no = saramList.length + 1;
+	console.log(newSaram);
+	saramList.push(newSaram);
+	res.send({saramList});
 });
 
 const server = http.createServer(app);
-server.listen(3000, ()=>{
-    console.log("서버 실행 중 : localhost:3000");
+server.listen(3000, () => {
+	console.log("서버 실행 중 : localhost:3000");
 });
 
 
