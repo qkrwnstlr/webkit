@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+	<button id="clickBtn">Click</button>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		const clickBtn = document.querySelector('#clickBtn');
+		// DOM을 jquery에 넣으면 jquery 객체가 된다.
+		const $clickBtn = $(clickBtn);
+		// jquery 객체의 0번 index는 원본 DOM 객체이다.
+		const clickBtn2 = $(clickBtn)[0];
+		console.log(clickBtn, $clickBtn, clickBtn2);
+	</script>
+	<script>
+		$("ul>li").click(function (event) {
+			console.log($(this)[0].innerHTML);
+		});
+		// for(var i = 0; i < $("ul>li").length; i++){
+		// 	$($($("ul>li")[i])).css("background-color", "red");
+		// }
+		$("ul>li").css("background-color", function (idx, fontColor) {
+			return "red";
+		});
+	</script>
+</body>
+
+</html>
