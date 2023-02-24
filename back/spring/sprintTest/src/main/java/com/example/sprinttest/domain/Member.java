@@ -1,7 +1,14 @@
 package com.example.sprinttest.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Member {
+  //id : pk임, identity : 자동으로 증가함
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @Column(name = "name")
   private String name;
 
   public Long getId() {

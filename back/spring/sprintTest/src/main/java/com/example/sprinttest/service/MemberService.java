@@ -5,9 +5,11 @@ import com.example.sprinttest.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 //@Service
+@Transactional // JPA는 모든 data 변경이 Transaction 안에서 일어나야 한다
 public class MemberService {
   private final MemberRepository memberRepository;
 
